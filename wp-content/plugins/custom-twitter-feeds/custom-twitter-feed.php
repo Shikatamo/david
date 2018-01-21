@@ -3,7 +3,7 @@
 Plugin Name: Custom Twitter Feeds
 Plugin URI: http://smashballoon.com/custom-twitter-feeds
 Description: Customizable Twitter feeds for your website
-Version: 1.2.7
+Version: 1.2.8
 Author: Smash Balloon
 Author URI: http://smashballoon.com/
 Text Domain: custom-twitter-feeds
@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 define( 'CTF_URL', plugin_dir_path( __FILE__ )  );
-define( 'CTF_VERSION', '1.2.7' );
+define( 'CTF_VERSION', '1.2.8' );
 define( 'CTF_TITLE', 'Custom Twitter Feeds' );
 define( 'CTF_JS_URL', plugins_url( '/js/ctf-scripts.js?ver=' . CTF_VERSION , __FILE__ ) );
 define( 'OAUTH_PROCESSOR_URL', 'https://smashballoon.com/ctf-at-retriever/?return_uri=' );
@@ -123,6 +123,12 @@ function ctf_get_more_posts() {
 }
 add_action( 'wp_ajax_nopriv_ctf_get_more_posts', 'ctf_get_more_posts' );
 add_action( 'wp_ajax_ctf_get_more_posts', 'ctf_get_more_posts' );
+
+function ctf_plugin_action_links( $links ) {
+	$links[] = '<a href="'. esc_url( get_admin_url( null, 'admin.php?page=custom-twitter-feeds' ) ) .'">' . __( 'Settings' ) . '</a>';
+	return $links;
+}
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'ctf_plugin_action_links' );
 
 /**
  * the html output is controlled by the user selecting which portions of tweets to show
@@ -246,27 +252,42 @@ add_action( 'wp_ajax_ctf_auto_save_tokens', 'ctf_auto_save_tokens' );
  * @return mixed bool whether or not it was successful
  */
 function ctf_clear_cache() {
-    if ( current_user_can( 'edit_posts' ) ) {
-        //Delete all transients
-        global $wpdb;
-        $table_name = $wpdb->prefix . "options";
-        $result = $wpdb->query("
-        DELETE
-        FROM $table_name
-        WHERE `option_name` LIKE ('%\_transient\_ctf\_%')
-        ");
-        $wpdb->query("
-        DELETE
-        FROM $table_name
-        WHERE `option_name` LIKE ('%\_transient\_timeout\_ctf\_%')
-        ");
-        return $result;
-    } else {
-        return false;
-    }
+
+    //Delete all transients
+    global $wpdb;
+    $table_name = $wpdb->prefix . "options";
+    $result = $wpdb->query("
+    DELETE
+    FROM $table_name
+    WHERE `option_name` LIKE ('%\_transient\_ctf\_%')
+    ");
+    $wpdb->query("
+    DELETE
+    FROM $table_name
+    WHERE `option_name` LIKE ('%\_transient\_timeout\_ctf\_%')
+    ");
+
 }
 add_action( 'ctf_cron_job', 'ctf_clear_cache' );
-add_action( 'wp_ajax_ctf_clear_cache', 'ctf_clear_cache' );
+
+function ctf_clear_cache_admin() {
+
+    //Delete all transients
+    global $wpdb;
+    $table_name = $wpdb->prefix . "options";
+    $result = $wpdb->query("
+    DELETE
+    FROM $table_name
+    WHERE `option_name` LIKE ('%\_transient\_ctf\_%')
+    ");
+    $wpdb->query("
+    DELETE
+    FROM $table_name
+    WHERE `option_name` LIKE ('%\_transient\_timeout\_ctf\_%')
+    ");
+
+}
+add_action( 'wp_ajax_ctf_clear_cache_admin', 'ctf_clear_cache_admin' );
 
 /**
  * manually clears the persistent cached tweets
@@ -366,7 +387,7 @@ function ctf_admin_scripts_and_styles() {
         )
     );
     wp_enqueue_style( 'wp-color-picker' );
-    wp_enqueue_script(array('wp-color-picker'));
+    wp_enqueue_script( 'wp-color-picker' );
 }
 add_action( 'admin_enqueue_scripts', 'ctf_admin_scripts_and_styles' );
 

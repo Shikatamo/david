@@ -2,9 +2,9 @@
 Contributors: edge22
 Donate link: https://wpshowposts.com
 Tags: show posts, display posts shortcode, portfolio, gallery, post columns
-Requires at least: 4.0
-Tested up to: 4.7
-Stable tag: 1.0
+Requires at least: 4.5
+Tested up to: 4.9
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,7 +21,7 @@ You can pull posts from any post type like WooCommerce, Easy Digital Downloads e
 This plugin works with any theme.
 
 Here are the features in the free version:
- 
+
 = Posts =
 
 * Post type
@@ -102,7 +102,7 @@ https://vimeo.com/175660953
 * Image lightbox
 * Image lightbox gallery
 
-= Content = 
+= Content =
 
 * Read more style
 * Read more color
@@ -112,7 +112,7 @@ https://vimeo.com/175660953
 * Title color
 * Title color hover
 
-= Meta = 
+= Meta =
 
 * Meta color
 * Meta color hover
@@ -161,6 +161,30 @@ In most cases, #1 will work fine and is way easier.
 7. The "More query ars" settings tab.
 
 == Changelog ==
+
+= 1.1.1 =
+* Fix: Fix image hover effects in WPSP Pro
+
+= 1.1 =
+* New: Allow multiple taxonomy terms to be selected
+* New: Choose the title HTML element
+* New: wpsp_disable_title_link filter
+* New: wpsp_disable_image_link filter
+* New: wpsp_read_more_output filter
+* New: wpsp_inside_wrapper hook
+* New: wpsp_image_attributes filter
+* New: wpsp_term_separator filter
+* New: Option to add comments number/link in post meta
+* New: Allow override of settings within shortcode parameter
+* New: Add standard post classes to each post
+* Tweak: Remove many function_exists() wrappers - check your custom functions!
+* Tweak: Pass list settings through hooks instead of using global
+* Tweak: Clean up code considerably
+* Tweak: Use the_excerpt() instead of custom function
+* Tweak: Remove border radius from read more buttons
+* Fix: Broken author setting
+* Fix: Remove image float on mobile
+* Fix: Missing color labels in WP 4.9
 
 = 1.0 =
 * Add new hook inside image container: wpsp_inside_image_container
@@ -223,6 +247,30 @@ In most cases, #1 will work fine and is way easier.
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.1.1 =
+* Fix: Fix image hover effects in WPSP Pro
+
+= 1.1 =
+* New: Allow multiple taxonomy terms to be selected
+* New: Choose the title HTML element
+* New: wpsp_disable_title_link filter
+* New: wpsp_disable_image_link filter
+* New: wpsp_read_more_output filter
+* New: wpsp_inside_wrapper hook
+* New: wpsp_image_attributes filter
+* New: wpsp_term_separator filter
+* New: Option to add comments number/link in post meta
+* New: Allow override of settings within shortcode parameter
+* New: Add standard post classes to each post
+* Tweak: Remove many function_exists() wrappers - check your custom functions!
+* Tweak: Pass list settings through hooks instead of using global
+* Tweak: Clean up code considerably
+* Tweak: Use the_excerpt() instead of custom function
+* Tweak: Remove border radius from read more buttons
+* Fix: Broken author setting
+* Fix: Remove image float on mobile
+* Fix: Missing color labels in WP 4.9
 
 = 1.0 =
 * Add new hook inside image container: wpsp_inside_image_container

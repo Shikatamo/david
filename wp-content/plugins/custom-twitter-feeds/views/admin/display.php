@@ -243,4 +243,4 @@
 
     </tbody>
 </table>
-<p><i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; <?php _e('Need help? <a href="?page=custom-twitter-feeds&tab=support">Get Support</a>.'); ?></p>
+<p><span class="fa fa-question-circle" aria-hidden="true"></span>&nbsp; <?php _e('Need help? <a href="?page=custom-twitter-feeds&tab=support">Get Support</a>.'); ?></p>

@@ -429,8 +429,8 @@
     -o-transition: background 0.1s ease-in-out;
     transition: background 0.1s ease-in-out;
 }
-#ctf .ctf-tweet-text-media-wrap i,
-#ctf .ctf-quoted-tweet-text-media-wrap i{
+#ctf .ctf-tweet-text-media-wrap .fa,
+#ctf .ctf-quoted-tweet-text-media-wrap .fa{
     padding-left: 3px;
 }
 #ctf .ctf-tweet-text-media-wrap:hover,
